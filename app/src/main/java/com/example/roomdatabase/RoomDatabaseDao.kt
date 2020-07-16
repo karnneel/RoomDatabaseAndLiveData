@@ -15,4 +15,7 @@ interface RoomDatabaseDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFilmsIntoDataBase(filmsList : List<Films>)
+
+    @Query("Delete from Films")
+    fun deleteFilmsTable()
 }

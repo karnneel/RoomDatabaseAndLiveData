@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
  */
 @Database(
     entities = [Films::class],
-    version = 2, exportSchema = true
+    version = 3, exportSchema = true
 )
 abstract class APPRoomDatabase : RoomDatabase() {
     abstract fun facilityDao(): RoomDatabaseDao?
@@ -21,7 +21,7 @@ abstract class APPRoomDatabase : RoomDatabase() {
         // marking the instance as volatile to ensure atomic access to the variable
         @Volatile
         private var INSTANCE: APPRoomDatabase? = null
-        private val MIGRATION_1_2: Migration = object : Migration(1, 2) {
+        private val MIGRATION_1_2: Migration = object : Migration(2, 3) {
             override fun migrate(database: SupportSQLiteDatabase) {
 
             }
@@ -39,8 +39,6 @@ abstract class APPRoomDatabase : RoomDatabase() {
                             // Wipes and rebuilds instead of migrating if no Migration object.
                             // Migration is not part of this codelab.
                             .addMigrations(MIGRATION_1_2)
-                            .fallbackToDestructiveMigration()
-                            .allowMainThreadQueries()
                             .addCallback(sRoomDatabaseCallback)
                             .build()
                     }

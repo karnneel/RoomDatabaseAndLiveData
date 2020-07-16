@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.roomdatabase.adapters.FilmsAdapter
 import com.example.roomdatabase.databinding.ActivityMainBinding
 import com.example.roomdatabase.viewmodel.FilmsViewModel
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         mainBinding.facilities.addItemDecoration(itemDecor)
         filmsViewModel.getAllFilms(this@MainActivity).observe(this@MainActivity, Observer { films ->
             if (null != films) {
+                Collections.sort(films, FilmsComparator())
 
                 Handler().postDelayed({
                     mainBinding.progressBar.visibility = View.GONE

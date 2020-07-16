@@ -15,7 +15,7 @@ class FilmAsyncTask(private val mContext: Context, private val mListener: FilmsL
 
     override fun doInBackground(vararg params: Void): List<Films> {
         val listFilms: List<Films> = prepareMovieData()
-
+        APPRoomDatabase.getDatabase(mContext)!!.facilityDao()!!.deleteFilmsTable()
         APPRoomDatabase.getDatabase(mContext)!!.facilityDao()!!.insertFilmsIntoDataBase(listFilms)
 
         return APPRoomDatabase.getDatabase(mContext)!!.facilityDao()!!.getFilms()
@@ -28,39 +28,102 @@ class FilmAsyncTask(private val mContext: Context, private val mListener: FilmsL
 
     private fun prepareMovieData(): MutableList<Films> {
         val movieList: MutableList<Films> = ArrayList()
-        var movie = Films(0, "Mad Max: Fury Road", "Action & Adventure", "2015")
+
+        var movie = Films()
+        movie.filmName = "Mad Max: Fury Road"
+        movie.genre = "Action & Adventure"
+        movie.releaseYear= "2015"
         movieList.add(movie)
-        movie = Films(1, "Inside Out", "Animation, Kids & Family", "2015")
+
+        movie = Films()
+        movie.filmName = "Inside Out"
+        movie.genre = "Animation, Kids & Family"
+        movie.releaseYear= "2015"
         movieList.add(movie)
-        movie = Films(2, "Star Wars: Episode VII - The Force Awakens", "Action", "2015")
+
+        movie = Films()
+        movie.filmName = "Star Wars: Episode VII - The Force Awakens"
+        movie.genre = "Action"
+        movie.releaseYear= "2015"
         movieList.add(movie)
-        movie = Films(3, "Shaun the Sheep", "Animation", "2015")
+
+        movie = Films()
+        movie.filmName = "Shaun the Sheep"
+        movie.genre = "Animation"
+        movie.releaseYear= "2015"
         movieList.add(movie)
-        movie = Films(4, "The Martian", "Science Fiction & Fantasy", "2015")
+
+        movie = Films()
+        movie.filmName = "The Martian"
+        movie.genre = "Science Fiction & Fantasy"
+        movie.releaseYear= "2015"
         movieList.add(movie)
-        movie = Films(5, "Mission: Impossible Rogue Nation", "Action", "2015")
+
+        movie = Films()
+        movie.filmName = "Mission: Impossible Rogue Nation"
+        movie.genre = "Action"
+        movie.releaseYear= "2015"
         movieList.add(movie)
-        movie = Films(6, "Up", "Animation", "2009")
+
+        movie = Films()
+        movie.filmName = "Up"
+        movie.genre = "Animation"
+        movie.releaseYear= "2009"
         movieList.add(movie)
-        movie = Films(7, "Star Trek", "Science Fiction", "2009")
+
+        movie = Films()
+        movie.filmName = "Star Trek"
+        movie.genre = "Science Fiction"
+        movie.releaseYear= "2009"
         movieList.add(movie)
-        movie = Films(8, "The LEGO Films", "Animation", "2014")
+
+        movie = Films()
+        movie.filmName = "The LEGO Films"
+        movie.genre = "Animation"
+        movie.releaseYear= "2014"
         movieList.add(movie)
-        movie = Films(9, "Iron Man", "Action & Adventure", "2008")
+
+        movie = Films()
+        movie.filmName = "Iron Man"
+        movie.genre = "Action & Adventure"
+        movie.releaseYear= "2008"
         movieList.add(movie)
-        movie = Films(10, "Aliens", "Science Fiction", "1986")
+
+        movie = Films()
+        movie.filmName = "Aliens"
+        movie.genre = "Science Fiction"
+        movie.releaseYear= "1986"
         movieList.add(movie)
-        movie = Films(11, "Chicken Run", "Animation", "2000")
+
+        movie = Films()
+        movie.filmName = "Chicken Run"
+        movie.genre = "Animation"
+        movie.releaseYear= "2000"
         movieList.add(movie)
-        movie = Films(12, "Back to the Future", "Science Fiction", "1985")
+
+        movie = Films()
+        movie.filmName = "Back to the Future"
+        movie.genre = "Science Fiction"
+        movie.releaseYear= "1985"
         movieList.add(movie)
-        movie = Films(13, "Raiders of the Lost Ark", "Action & Adventure", "1981")
+
+        movie = Films()
+        movie.filmName = "Raiders of the Lost Ark"
+        movie.genre = "Action & Adventure"
+        movie.releaseYear= "1981"
         movieList.add(movie)
-        movie = Films(14, "Goldfinger", "Action & Adventure", "1965")
+
+        movie = Films()
+        movie.filmName = "Goldfinger"
+        movie.genre = "Action & Adventure"
+        movie.releaseYear= "1965"
         movieList.add(movie)
-        movie = Films(15, "Guardians of the Galaxy", "Science Fiction & Fantasy", "2014")
+
+        movie = Films()
+        movie.filmName = "Guardians of the Galaxy"
+        movie.genre = "Science Fiction & Fantasy"
+        movie.releaseYear= "2014"
         movieList.add(movie)
         return movieList
     }
-
 }
